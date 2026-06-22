@@ -1,7 +1,1 @@
-django
-djangorestframework
-django-cors-headers
-pandas
-numpy
-scikit-learn
-djangorestframework-simplejwt
+-r backend/requirements.txt

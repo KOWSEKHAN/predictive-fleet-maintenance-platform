@@ -12,7 +12,12 @@ def main():
     # In production (Render), env vars are injected by the platform — dotenv is a no-op.
     try:
         from dotenv import load_dotenv
-        load_dotenv()  # reads backend/.env into os.environ if it exists
+        from pathlib import Path
+        env_path = Path(__file__).resolve().parent / '.env'
+        if env_path.exists():
+            load_dotenv(dotenv_path=env_path)
+        else:
+            load_dotenv()  # fallback to current working directory
     except ImportError:
         pass  # dotenv not installed in this environment — that's fine
 

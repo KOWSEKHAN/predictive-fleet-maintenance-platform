@@ -11,7 +11,12 @@ import os
 # On Render, env vars are injected by the platform — this is a safe no-op.
 try:
     from dotenv import load_dotenv
-    load_dotenv()
+    from pathlib import Path
+    env_path = Path(__file__).resolve().parent.parent / '.env'
+    if env_path.exists():
+        load_dotenv(dotenv_path=env_path)
+    else:
+        load_dotenv()  # fallback to current working directory
 except ImportError:
     pass
 

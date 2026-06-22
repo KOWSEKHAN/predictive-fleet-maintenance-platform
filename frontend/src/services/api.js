@@ -1,6 +1,6 @@
 // API base URL — set REACT_APP_API_URL env var on Vercel for production.
 // Falls back to localhost:8000 for local development automatically.
-const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:8000/api';
+export const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:8000/api';
 
 const getHeaders = () => {
   const token = localStorage.getItem('access_token');

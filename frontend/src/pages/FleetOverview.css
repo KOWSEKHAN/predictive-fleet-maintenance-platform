@@ -1,0 +1,193 @@
+/* ═══════════════════════════════════════════════
+   Fleet Overview — Responsive Table + Controls
+═══════════════════════════════════════════════ */
+
+.fleet-content {
+  padding: clamp(16px, 4vw, 32px);
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* ── Search / Filter Controls ──────────────────── */
+.controls-row {
+  display: flex;
+  gap: 12px;
+  padding: clamp(14px, 2vw, 20px);
+  margin-bottom: 24px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.search-input {
+  flex: 1;
+  min-width: 200px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  padding: 10px 16px;
+  color: #ffffff;
+  font-size: 14px;
+  font-family: inherit;
+  transition: border-color 0.2s;
+}
+
+.search-input::placeholder { color: rgba(255, 255, 255, 0.3); }
+.search-input:focus { outline: none; border-color: #a855f7; }
+
+.filter-select,
+.sort-select {
+  background: rgba(18, 10, 36, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  padding: 10px 14px;
+  color: #ffffff;
+  font-size: 14px;
+  font-family: inherit;
+  cursor: pointer;
+  transition: border-color 0.2s;
+  min-width: 140px;
+}
+
+.filter-select:focus,
+.sort-select:focus { outline: none; border-color: #a855f7; }
+
+/* ── Table Wrapper ─────────────────────────────── */
+.table-wrapper {
+  overflow-x: auto;
+  border-radius: 16px;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Scrollbar styling */
+.table-wrapper::-webkit-scrollbar { height: 4px; }
+.table-wrapper::-webkit-scrollbar-track { background: rgba(255,255,255,0.02); }
+.table-wrapper::-webkit-scrollbar-thumb { background: rgba(168,85,247,0.4); border-radius: 2px; }
+
+.fleet-table {
+  width: 100%;
+  min-width: 560px; /* allow horizontal scroll before card-flip */
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.fleet-table th,
+.fleet-table td {
+  padding: clamp(12px, 2vw, 18px) clamp(14px, 2.5vw, 24px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  font-size: clamp(12px, 1.3vw, 14px);
+  white-space: nowrap;
+}
+
+.fleet-table th {
+  background: rgba(255, 255, 255, 0.02);
+  color: rgba(255, 255, 255, 0.6);
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 11px;
+  letter-spacing: 0.5px;
+  position: sticky;
+  top: 0;
+}
+
+.clickable-row {
+  cursor: pointer;
+  transition: background 0.18s;
+}
+
+.clickable-row:hover {
+  background: rgba(168, 85, 247, 0.06);
+}
+
+.empty-table {
+  text-align: center;
+  color: rgba(255, 255, 255, 0.4);
+  padding: 48px 24px !important;
+  white-space: normal !important;
+}
+
+/* ── Status Badges ─────────────────────────────── */
+.status-badge {
+  display: inline-block;
+  padding: 4px 11px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: capitalize;
+  white-space: nowrap;
+}
+
+.status-badge.healthy  { background: rgba(16,185,129,0.15);  color: #34d399; border: 1px solid rgba(16,185,129,0.3);  }
+.status-badge.warning  { background: rgba(245,158,11,0.15);  color: #fbbf24; border: 1px solid rgba(245,158,11,0.3);  }
+.status-badge.critical { background: rgba(239,110,110,0.15); color: #f87171; border: 1px solid rgba(239,68,68,0.3);   }
+
+/* ── Mobile ≤ 768px — card-flip layout ────────── */
+@media (max-width: 768px) {
+  .fleet-content { padding-top: 72px; }
+
+  .controls-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .search-input,
+  .filter-select,
+  .sort-select {
+    width: 100%;
+    min-width: unset;
+  }
+
+  /* Card-flip: hide thead, stack each row as a card */
+  .table-wrapper {
+    overflow-x: visible;
+  }
+
+  .fleet-table,
+  .fleet-table tbody,
+  .fleet-table tr,
+  .fleet-table td {
+    display: block;
+    width: 100%;
+  }
+
+  .fleet-table thead { display: none; }
+
+  .fleet-table tr {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 12px;
+    margin-bottom: 12px;
+    padding: 16px;
+    white-space: normal;
+  }
+
+  .fleet-table td {
+    padding: 6px 0;
+    border: none;
+    font-size: 13px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+    white-space: normal;
+  }
+
+  /* Data labels injected via ::before */
+  .fleet-table td:nth-child(1)::before { content: 'Vehicle'; }
+  .fleet-table td:nth-child(2)::before { content: 'Type'; }
+  .fleet-table td:nth-child(3)::before { content: 'Driver'; }
+  .fleet-table td:nth-child(4)::before { content: 'Route'; }
+  .fleet-table td:nth-child(5)::before { content: 'Status'; }
+
+  .fleet-table td::before {
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.4);
+    letter-spacing: 0.5px;
+    flex-shrink: 0;
+  }
+}
+
+@media (max-width: 425px) {
+  .fleet-table td { font-size: 12px; }
+}

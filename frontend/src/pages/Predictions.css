@@ -1,0 +1,143 @@
+/* ═══════════════════════════════════════════════
+   Predictions Page — Responsive Table
+═══════════════════════════════════════════════ */
+
+.predictions-content {
+  padding: clamp(16px, 4vw, 32px);
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.predictions-table {
+  width: 100%;
+  min-width: 640px;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.predictions-table th,
+.predictions-table td {
+  padding: clamp(12px, 1.8vw, 18px) clamp(12px, 2vw, 24px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  font-size: clamp(12px, 1.3vw, 14px);
+  white-space: nowrap;
+}
+
+.predictions-table th {
+  background: rgba(255, 255, 255, 0.02);
+  color: rgba(255, 255, 255, 0.6);
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 11px;
+  letter-spacing: 0.5px;
+  position: sticky;
+  top: 0;
+}
+
+/* ── Badges ────────────────────────────────────── */
+.cond-badge {
+  display: inline-block;
+  padding: 4px 11px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: capitalize;
+  white-space: nowrap;
+}
+
+.cond-badge.good    { background: rgba(16,185,129,0.15);  color: #34d399; border: 1px solid rgba(16,185,129,0.3); }
+.cond-badge.average { background: rgba(245,158,11,0.15);  color: #fbbf24; border: 1px solid rgba(245,158,11,0.3); }
+.cond-badge.bad     { background: rgba(239,68,68,0.15);   color: #f87171; border: 1px solid rgba(239,68,68,0.3);  }
+
+/* ── Risk indicator ────────────────────────────── */
+.risk-indicator {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.risk-num {
+  font-weight: 600;
+  width: 40px;
+  font-size: 13px;
+}
+
+.risk-bar-bg {
+  width: 70px;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.risk-bar-fill {
+  height: 100%;
+  border-radius: 3px;
+  transition: width 0.4s ease;
+}
+
+/* ── Recommendation tags ───────────────────────── */
+.rec-tag {
+  display: inline-block;
+  padding: 5px 10px;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.rec-tag.normal   { background: rgba(16,185,129,0.1);  color: #34d399; border: 1px solid rgba(16,185,129,0.2); }
+.rec-tag.warning  { background: rgba(245,158,11,0.1);  color: #fbbf24; border: 1px solid rgba(245,158,11,0.2); }
+.rec-tag.critical { background: rgba(239,68,68,0.1);   color: #f87171; border: 1px solid rgba(239,68,68,0.2);  }
+
+/* ── Mobile ≤ 768px — card-flip ───────────────── */
+@media (max-width: 768px) {
+  .predictions-content { padding-top: 72px; }
+
+  .table-wrapper { overflow-x: visible; }
+
+  .predictions-table,
+  .predictions-table tbody,
+  .predictions-table tr,
+  .predictions-table td { display: block; width: 100%; }
+
+  .predictions-table thead { display: none; }
+
+  .predictions-table tr {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 12px;
+    margin-bottom: 12px;
+    padding: 16px;
+  }
+
+  .predictions-table td {
+    padding: 6px 0;
+    border: none;
+    font-size: 13px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+    white-space: normal;
+  }
+
+  .predictions-table td:nth-child(1)::before { content: 'Vehicle'; }
+  .predictions-table td:nth-child(2)::before { content: 'Tyre'; }
+  .predictions-table td:nth-child(3)::before { content: 'Condition'; }
+  .predictions-table td:nth-child(4)::before { content: 'RUL (km)'; }
+  .predictions-table td:nth-child(5)::before { content: 'Risk'; }
+  .predictions-table td:nth-child(6)::before { content: 'Action'; }
+
+  .predictions-table td::before {
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.4);
+    letter-spacing: 0.5px;
+    flex-shrink: 0;
+  }
+
+  /* Risk bar adapts to remaining space */
+  .risk-bar-bg { width: 50px; }
+}

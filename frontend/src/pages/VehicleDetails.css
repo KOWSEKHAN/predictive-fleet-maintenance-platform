@@ -1,0 +1,115 @@
+/* ═══════════════════════════════════════════════
+   Vehicle Details — Responsive Layout
+═══════════════════════════════════════════════ */
+
+.details-content {
+  padding: clamp(16px, 4vw, 32px);
+  max-width: 1400px;
+  margin: 0 auto;
+  text-align: left;
+}
+
+.back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+  padding: 9px 18px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  font-family: inherit;
+  transition: all 0.2s;
+  margin-bottom: clamp(16px, 3vw, 24px);
+}
+
+.back-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: #a855f7;
+}
+
+/* ── Vehicle meta header ───────────────────────── */
+.vehicle-header {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(180px, 100%), 1fr));
+  gap: clamp(16px, 2.5vw, 24px);
+  padding: clamp(16px, 2.5vw, 24px);
+  margin-bottom: clamp(20px, 3vw, 32px);
+}
+
+.meta-item {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+}
+
+.meta-label {
+  font-size: 11px;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.5);
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.meta-value {
+  font-size: clamp(13px, 1.6vw, 16px);
+  font-weight: 600;
+  color: #ffffff;
+  word-break: break-word;
+}
+
+/* ── Tyre section ──────────────────────────────── */
+.tyres-section h2 {
+  font-size: clamp(16px, 2.5vw, 20px);
+  font-weight: 600;
+  color: #ffffff;
+  margin-bottom: clamp(14px, 2vw, 20px);
+}
+
+.tyres-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(300px, 100%), 1fr));
+  gap: clamp(14px, 2vw, 24px);
+}
+
+.no-tyres {
+  grid-column: 1 / -1;
+  padding: clamp(24px, 4vw, 40px);
+  text-align: center;
+  color: rgba(255, 255, 255, 0.4);
+  font-size: 14px;
+}
+
+.error-content {
+  padding: clamp(24px, 4vw, 40px);
+  text-align: center;
+}
+
+.error-content p {
+  color: rgba(255, 255, 255, 0.6);
+  margin-bottom: 20px;
+  font-size: 14px;
+}
+
+/* ── Mobile ≤ 768px ────────────────────────────── */
+@media (max-width: 768px) {
+  .details-content { padding-top: 72px; }
+
+  .vehicle-header {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .tyres-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 425px) {
+  .vehicle-header {
+    grid-template-columns: 1fr;
+  }
+}

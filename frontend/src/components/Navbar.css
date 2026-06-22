@@ -1,0 +1,98 @@
+/* ═══════════════════════════════════════════════
+   Navbar — Responsive Top Bar
+═══════════════════════════════════════════════ */
+
+.navbar {
+  height: 64px;
+  background: rgba(18, 10, 36, 0.55);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 clamp(16px, 3vw, 32px);
+  position: sticky;
+  top: 0;
+  z-index: 90;
+  box-sizing: border-box;
+  /* No margin-left — page-container already handles the sidebar offset */
+}
+
+.navbar-title {
+  font-size: clamp(15px, 2.5vw, 20px);
+  font-weight: 600;
+  color: #ffffff;
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.navbar-right {
+  display: flex;
+  align-items: center;
+  gap: clamp(12px, 2vw, 24px);
+  flex-shrink: 0;
+}
+
+/* ── Simulator button ──────────────────────────── */
+.sim-btn {
+  background: linear-gradient(135deg, #a855f7 0%, #d946ef 100%);
+  color: #ffffff;
+  border: none;
+  padding: 7px 14px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  box-shadow: 0 4px 15px rgba(168, 85, 247, 0.3);
+  white-space: nowrap;
+}
+
+.sim-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(168, 85, 247, 0.5);
+}
+
+.sim-btn.running {
+  background: linear-gradient(135deg, #22c55e 0%, #10b981 100%);
+  box-shadow: 0 4px 15px rgba(34, 197, 94, 0.3);
+}
+
+/* ── User info ─────────────────────────────────── */
+.navbar-user {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.user-avatar { font-size: 18px; }
+
+/* ── Mobile ≤ 1024px: offset for hamburger btn ─── */
+@media (max-width: 1024px) {
+  .navbar {
+    padding-left: 68px; /* hamburger btn width (44) + gap (14) + extra */
+  }
+
+  .navbar-title {
+    font-size: clamp(13px, 3.5vw, 17px);
+  }
+}
+
+/* ── Small mobile ≤ 480px: hide user text ─────── */
+@media (max-width: 480px) {
+  .navbar-user span:not(.user-avatar) {
+    display: none;
+  }
+
+  .sim-btn {
+    padding: 6px 10px;
+    font-size: 11px;
+  }
+}
